@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VIVEK — AI ENGINEER</title>
+<meta name="description" content="Portfolio of Kamuju Vivek Ram Sri, an AI Engineer specializing in LLM integrations, RAG pipelines, generative 3D (GAN + NeRF), and real-time AI agents."/>
+<meta name="keywords" content="Vivek Ram Sri, AI Engineer, Full Stack Developer, Machine Learning, Deep Learning, Python, Next.js, Kotlin, Android"/>
+<meta property="og:title" content="VIVEK — AI ENGINEER"/>
+<meta property="og:description" content="Portfolio of Kamuju Vivek Ram Sri, an AI Engineer building end-to-end AI systems and shipping production software."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#0a0905;
+  --white:#f5f0e8;
+  --yellow:#e8d44d;
+  --red:#d63c2f;
+  --mono:'Space Mono',monospace;
+  --display:'Bebas Neue',sans-serif;
+  --body:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:var(--body);
+  font-size:16px;
+  cursor:none;
+  overflow-x:hidden;
+}
+#cur{
+  position:fixed;width:12px;height:12px;border-radius:50%;
+  background:var(--red);pointer-events:none;z-index:9999;
+  mix-blend-mode:normal;transition:transform 0.1s;
+}
+#cur.big{transform:scale(4);}
+.ticker{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--yellow);color:var(--black);
+  height:36px;display:flex;align-items:center;overflow:hidden;
+  border-bottom:3px solid var(--black);
+}
+.ticker-inner{display:flex;gap:0;animation:tick 22s linear infinite;white-space:nowrap;}
+.ticker-item{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;padding:0 2.5rem;flex-shrink:0;
+}
+.ticker-item span{color:var(--red);margin:0 0.5rem;}
+@keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+nav{
+  position:fixed;top:36px;left:0;right:0;z-index:100;
+  display:flex;align-items:stretch;
+  border-bottom:3px solid var(--white);background:var(--black);height:56px;
+}
+.nav-name{
+  font-family:var(--display);font-size:2rem;letter-spacing:0.04em;
+  color:var(--white);text-decoration:none;padding:0 1.5rem;
+  display:flex;align-items:center;border-right:3px solid var(--white);
+}
+.nav-links{display:flex;list-style:none;flex:1;}
+.nav-links li{border-right:1px solid rgba(255,255,255,0.15);}
+.nav-links a{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;
+  padding:0 1.25rem;height:100%;display:flex;align-items:center;
+  transition:color 0.15s,background 0.15s;
+}
+.nav-links a:hover{color:var(--black);background:var(--yellow);}
+.nav-hire{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+  text-transform:uppercase;background:var(--red);color:var(--white);
+  text-decoration:none;padding:0 1.75rem;display:flex;align-items:center;
+  border-left:3px solid var(--white);font-weight:700;transition:background 0.15s;
+}
+.nav-hire:hover{background:var(--yellow);color:var(--black);}
+.hero{
+  padding-top:calc(36px + 56px);
+  border-bottom:3px solid var(--white);position:relative;overflow:hidden;
+}
+.hero-inner{
+  padding:4rem 3rem 0;display:grid;grid-template-columns:1fr 300px;
+  gap:0;align-items:end;border-bottom:3px solid var(--white);
+}
+.hero-left{border-right:3px solid var(--white);padding-right:3rem;padding-bottom:3rem;}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--yellow);margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-eyebrow::after{content:'';flex:1;height:1px;background:var(--yellow);opacity:0.4;max-width:80px;}
+.hero h1{
+  font-family:var(--display);font-size:clamp(5rem,13vw,11rem);
+  line-height:0.9;letter-spacing:0.01em;color:var(--white);margin-bottom:2rem;
+}
+.hero h1 em{font-style:normal;color:var(--yellow);display:block;}
+.hero h1 .stroke{-webkit-text-stroke:2px var(--white);color:transparent;}
+.hero-sub{
+  font-family:var(--body);font-size:1.15rem;font-weight:300;
+  color:rgba(245,240,232,0.6);line-height:1.7;max-width:480px;margin-bottom:2.5rem;
+}
+.hero-sub strong{color:var(--white);font-weight:600;}
+.hero-btns{display:flex;gap:0;border:3px solid var(--white);width:fit-content;}
+.hero-btns a{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.1em;
+  text-transform:uppercase;text-decoration:none;padding:0.85rem 1.75rem;
+  display:block;transition:background 0.15s,color 0.15s;
+}
+.hero-btns a.primary{background:var(--white);color:var(--black);font-weight:700;}
+.hero-btns a.primary:hover{background:var(--yellow);}
+.hero-btns a.secondary{color:var(--white);border-left:3px solid var(--white);}
+.hero-btns a.secondary:hover{background:var(--white);color:var(--black);}
+.hero-right{padding:2rem 2rem 3rem;display:flex;flex-direction:column;gap:0;}
+.stat-block{padding:1.5rem 0;border-bottom:1px solid rgba(255,255,255,0.12);}
+.stat-block:last-child{border-bottom:none;}
+.stat-n{font-family:var(--display);font-size:3.5rem;color:var(--yellow);line-height:1;}
+.stat-l{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;}
+.status-bar{
+  display:flex;align-items:center;padding:1rem 3rem;
+  border-bottom:3px solid var(--white);overflow-x:auto;flex-wrap:wrap;gap:0.5rem;
+}
+.status-item{
+  display:flex;align-items:center;gap:0.6rem;font-family:var(--mono);
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.45);padding-right:2rem;margin-right:2rem;
+  border-right:1px solid rgba(255,255,255,0.12);white-space:nowrap;
+}
+.status-item:last-child{border-right:none;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);}
+.status-dot.red{background:var(--red);}
+.status-dot.white{background:var(--white);}
+.sec-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 3rem;border-bottom:3px solid var(--white);
+}
+.sec-label{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--yellow);}
+.sec-num{font-family:var(--display);font-size:1.2rem;color:rgba(255,255,255,0.15);}
+#skills{border-top:3px solid var(--white);}
+.skills-table{width:100%;border-collapse:collapse;}
+.skills-table tr{border-bottom:1px solid rgba(255,255,255,0.1);}
+.skills-table tr:last-child{border-bottom:none;}
+.skills-table td{padding:1.25rem 3rem;}
+.skills-table td:first-child{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);width:180px;border-right:1px solid rgba(255,255,255,0.1);
+  vertical-align:top;padding-top:1.4rem;
+}
+.skills-table td:last-child{font-family:var(--body);font-size:1.15rem;font-weight:400;color:var(--white);line-height:1.9;}
+.skills-table .hi{color:var(--yellow);font-weight:700;}
+#projects{border-top:3px solid var(--white);}
+.project-row{display:grid;grid-template-columns:80px 1fr;border-bottom:1px solid rgba(255,255,255,0.1);}
+.project-row:hover{background:rgba(255,255,255,0.03);}
+.project-row.top{border-bottom:3px solid var(--white);}
+.project-num{
+  font-family:var(--display);font-size:4rem;color:rgba(255,255,255,0.08);
+  padding:1.5rem 0 1.5rem 3rem;border-right:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:flex-start;line-height:1;
+}
+.project-content{padding:1.75rem 3rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;}
+.project-badge{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;
+}
+.project-badge.yl{color:var(--yellow);}
+.project-name{
+  font-family:var(--display);font-size:2.2rem;letter-spacing:0.02em;
+  color:var(--white);line-height:1;margin-bottom:0.6rem;
+}
+.project-desc{
+  font-family:var(--body);font-size:1rem;font-weight:300;
+  color:rgba(245,240,232,0.5);line-height:1.6;max-width:600px;margin-bottom:1rem;
+}
+.project-stack{display:flex;flex-wrap:wrap;gap:6px;}
+.stk{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.15);padding:3px 8px;
+}
+.project-link-col{display:flex;flex-direction:column;gap:8px;align-items:flex-end;padding-top:4px;}
+.p-link{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;border:1px solid rgba(255,255,255,0.3);
+  padding:6px 14px;transition:background 0.15s,color 0.15s,border-color 0.15s;white-space:nowrap;
+}
+.p-link:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow);}
+#experience{border-top:3px solid var(--white);}
+.exp-row{
+  display:grid;grid-template-columns:200px 1fr auto;
+  border-bottom:1px solid rgba(255,255,255,0.1);padding:2rem 3rem;align-items:start;
+}
+.exp-period{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(255,255,255,0.3);padding-top:4px;border-right:1px solid rgba(255,255,255,0.1);padding-right:2rem;
+}
+.exp-body{padding:0 2rem;}
+.exp-co{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--yellow);margin-bottom:0.35rem;}
+.exp-role{font-family:var(--display);font-size:1.9rem;letter-spacing:0.02em;color:var(--white);margin-bottom:0.7rem;line-height:1;}
+.exp-desc{font-family:var(--body);font-size:1rem;font-weight:300;color:rgba(245,240,232,0.5);line-height:1.65;}
+.exp-status{font-family:var(--mono);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:4px 12px;border:1px solid;white-space:nowrap;}
+.exp-status.active{color:var(--yellow);border-color:var(--yellow);}
+.exp-status.done{color:rgba(255,255,255,0.25);border-color:rgba(255,255,255,0.15);}
+#contact{border-top:3px solid var(--white);}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;min-height:320px;}
+.contact-left{padding:4rem 3rem;border-right:3px solid var(--white);}
+.contact-big{font-family:var(--display);font-size:clamp(3rem,8vw,6rem);line-height:0.9;letter-spacing:0.01em;margin-bottom:2rem;}
+.contact-big em{font-style:normal;color:var(--yellow);}
+.contact-sub{font-family:var(--body);font-size:1.05rem;font-weight:300;color:rgba(245,240,232,0.5);line-height:1.7;margin-bottom:2.5rem;}
+.contact-email{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--yellow);text-decoration:none;border-bottom:1px solid var(--yellow);padding-bottom:2px;transition:opacity 0.15s;}
+.contact-email:hover{opacity:0.7;}
+.contact-right{display:flex;flex-direction:column;}
+.contact-link-row{
+  flex:1;display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 3rem;border-bottom:1px solid rgba(255,255,255,0.1);
+  text-decoration:none;transition:background 0.15s;
+}
+.contact-link-row:hover{background:rgba(255,255,255,0.04);}
+.contact-link-row:last-child{border-bottom:none;}
+.cl-label{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);}
+.cl-val{font-family:var(--body);font-size:1.1rem;font-weight:600;color:var(--white);}
+.cl-arr{font-family:var(--mono);font-size:14px;color:var(--yellow);}
+footer{
+  border-top:3px solid var(--white);display:flex;justify-content:space-between;
+  align-items:center;padding:1rem 3rem;
+}
+.ft-l{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+.ft-r{font-family:var(--display);font-size:1.5rem;color:rgba(255,255,255,0.08);letter-spacing:0.05em;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{animation:fadeIn 0.4s ease both;}
+.hero h1{animation:fadeIn 0.5s 0.08s ease both;}
+.hero-sub{animation:fadeIn 0.5s 0.16s ease both;}
+.hero-btns{animation:fadeIn 0.5s 0.24s ease both;}
+.hero-right{animation:fadeIn 0.5s 0.1s ease both;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--black);}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);}
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{border-right:none;padding-right:1.5rem;}
+  .hero-inner,.sec-header,.status-bar{padding-left:1.5rem;padding-right:1.5rem;}
+  .skills-table td{padding:1rem 1.5rem;}
+  .project-content{grid-template-columns:1fr;padding:1.5rem;}
+  .project-num{padding-left:1.5rem;}
+  .exp-row{grid-template-columns:1fr;padding:1.5rem;}
+  .exp-period{border-right:none;padding-right:0;margin-bottom:0.5rem;}
+  .exp-body{padding:0;}
+  .contact-inner{grid-template-columns:1fr;}
+  .contact-left{border-right:none;padding:2rem 1.5rem;}
+  .contact-link-row{padding:1.25rem 1.5rem;}
+  footer{padding:1rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">AI ENGINEER <span>✦</span></span>
+    <span class="ticker-item">FULL STACK DEVELOPER <span>✦</span></span>
+    <span class="ticker-item">GAN + NERF — 3D GENERATION <span>✦</span></span>
+    <span class="ticker-item">LLM INTEGRATIONS <span>✦</span></span>
+    <span class="ticker-item">RAG PIPELINES <span>✦</span></span>
+    <span class="ticker-item">ANDROID APPS <span>✦</span></span>
+    <span class="ticker-item">OPEN TO WORK <span>✦</span></span>
+    <span class="ticker-item">VISAKHAPATNAM, AP <span>✦</span></span>
+    <span class="ticker-item">AI ENGINEER <span>✦</span></span>
+    <span class="ticker-item">FULL STACK DEVELOPER <span>✦</span></span>
+    <span class="ticker-item">GAN + NERF — 3D GENERATION <span>✦</span></span>
+    <span class="ticker-item">LLM INTEGRATIONS <span>✦</span></span>
+    <span class="ticker-item">RAG PIPELINES <span>✦</span></span>
+    <span class="ticker-item">ANDROID APPS <span>✦</span></span>
+    <span class="ticker-item">OPEN TO WORK <span>✦</span></span>
+    <span class="ticker-item">VISAKHAPATNAM, AP <span>✦</span></span>
+  </div>
+</div>
+
+<nav>
+  <a class="nav-name" href="#hero">VIVEK</a>
+  <ul class="nav-links">
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://github.com/ramsri90" target="_blank">GitHub</a></li>
+    <li><a href="https://www.linkedin.com/in/kamujuvivekramsri/" target="_blank">LinkedIn</a></li>
+  </ul>
+  <a class="nav-hire" href="mailto:ramsri.sri2004@gmail.com">HIRE ME →</a>
+</nav>
+
+<section id="hero" class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Available · B.Tech Data Science · 2026</div>
+      <h1>
+        <em>AI</em>
+        <span class="stroke">ENGI</span>
+        NEER
+      </h1>
+      <p class="hero-sub">
+        I build <strong>end-to-end AI systems</strong> — LLM integrations, RAG pipelines,
+        generative 3D (GAN + NeRF), and real-time AI agents.
+        Final-year student. Already shipping production software.
+      </p>
+      <div class="hero-btns">
+        <a class="primary" href="#projects">VIEW WORK</a>
+        <a class="secondary" href="mailto:ramsri.sri2004@gmail.com">GET IN TOUCH</a>
+        <a class="secondary" href="https://github.com/ramsri90" target="_blank">GITHUB ↗</a>
+        <a class="secondary" href="https://www.linkedin.com/in/kamujuvivekramsri/" target="_blank">LINKEDIN ↗</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-block"><div class="stat-n">5+</div><div class="stat-l">AI apps shipped</div></div>
+      <div class="stat-block"><div class="stat-n">9</div><div class="stat-l">ShapeNet categories</div></div>
+      <div class="stat-block"><div class="stat-n">3+</div><div class="stat-l">Years building</div></div>
+      <div class="stat-block"><div class="stat-n">7.3</div><div class="stat-l">CGPA · Andhra Univ.</div></div>
+    </div>
+  </div>
+  <div class="status-bar">
+    <div class="status-item"><div class="status-dot"></div>Open to work</div>
+    <div class="status-item"><div class="status-dot white"></div>Python · Kotlin · TypeScript</div>
+    <div class="status-item"><div class="status-dot white"></div>PyTorch · TensorFlow</div>
+    <div class="status-item"><div class="status-dot white"></div>Claude API · OpenAI API</div>
+    <div class="status-item"><div class="status-dot white"></div>Next.js 14 · Flask</div>
+    <div class="status-item"><div class="status-dot red"></div>Graduating 2026</div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-header"><span class="sec-label">Technical skills</span><span class="sec-num">01</span></div>
+  <table class="skills-table">
+    <tr>
+      <td>AI / ML</td>
+      <td><span class="hi">PyTorch</span>, <span class="hi">TensorFlow</span>, Scikit-Learn, <span class="hi">CNNs</span>, <span class="hi">GANs</span>, <span class="hi">NeRF</span>, NLP, Computer Vision, TFLite, OpenCV, NumPy, Pandas</td>
+    </tr>
+    <tr>
+      <td>LLM &amp; Agents</td>
+      <td><span class="hi">Claude API</span>, <span class="hi">OpenAI API</span>, RAG Pipelines, LLM Integrations, AI Agent Workflows, Prompt Engineering, <span class="hi">Cursor</span>, <span class="hi">Claude Code</span>, Windsurf</td>
+    </tr>
+    <tr>
+      <td>Languages</td>
+      <td><span class="hi">Python</span>, <span class="hi">Kotlin</span>, <span class="hi">TypeScript</span>, JavaScript, Java, SQL</td>
+    </tr>
+    <tr>
+      <td>Backend / APIs</td>
+      <td><span class="hi">Next.js 14</span>, Node.js, Flask, REST APIs, Webhooks, <span class="hi">Meta WhatsApp Cloud API</span></td>
+    </tr>
+    <tr>
+      <td>Android</td>
+      <td><span class="hi">Jetpack Compose</span>, ExoPlayer, Material 3, TFLite, STT/TTS, Hilt, Room, ML Kit</td>
+    </tr>
+    <tr>
+      <td>Databases</td>
+      <td>Supabase (PostgreSQL), Firebase Firestore, MongoDB, MySQL</td>
+    </tr>
+    <tr>
+      <td>Cloud / DevOps</td>
+      <td>Vercel, Render, Firebase, Git, GitHub</td>
+    </tr>
+  </table>
+</section>
+
+<section id="projects">
+  <div class="sec-header"><span class="sec-label">Selected projects</span><span class="sec-num">02</span></div>
+
+  <div class="project-row top">
+    <div class="project-num">01</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge yl">FINAL YEAR THESIS · 2025–2026</div>
+        <div class="project-name">3D MODEL GENERATION VIA GAN &amp; NERF</div>
+        <p class="project-desc">Designed and trained GAN and NeRF pipelines to generate 3D models across 9 ShapeNet object categories. Voxel-based conditional GAN with dual discriminators, NeRF refinement stage, and Flask deployment. Full 12-chapter academic documentation.</p>
+        <div class="project-stack">
+          <span class="stk">Python</span><span class="stk">PyTorch</span><span class="stk">GAN</span><span class="stk">NeRF</span><span class="stk">ShapeNet</span><span class="stk">Flask</span><span class="stk">Computer Vision</span>
+        </div>
+      </div>
+      <div class="project-link-col"><a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a></div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">02</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge">INTERNSHIP · WEBBHEADS</div>
+        <div class="project-name">WHATSAPP NLP PROPERTY BOT</div>
+        <p class="project-desc">Full-stack property listing platform with a multilingual WhatsApp bot (English, Telugu, Hindi). Meta Cloud API, interactive menus, automated lead capture to Google Sheets. Production on Vercel.</p>
+        <div class="project-stack">
+          <span class="stk">Next.js 14</span><span class="stk">WhatsApp API</span><span class="stk">NLP</span><span class="stk">Google Sheets</span><span class="stk">Vercel</span><span class="stk">TypeScript</span>
+        </div>
+      </div>
+      <div class="project-link-col"><a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a></div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">03</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge yl">ANDROID · AI · 2026</div>
+        <div class="project-name">KIDGUARD — PARENTAL CONTROL</div>
+        <p class="project-desc">Android child-device app + React web dashboard with real-time Firestore sync, live GPS tracking, remote device locking, and AI-driven content analysis to flag inappropriate usage.</p>
+        <div class="project-stack">
+          <span class="stk">Kotlin</span><span class="stk">React</span><span class="stk">Firebase</span><span class="stk">Firestore</span><span class="stk">GPS</span><span class="stk">AI Analysis</span>
+        </div>
+      </div>
+      <div class="project-link-col"><a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a></div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">04</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge">ML · COMPUTER VISION · 2024</div>
+        <div class="project-name">DEMOGRAPHIC PREDICTION MODEL</div>
+        <p class="project-desc">CNN-based model estimating age and gender from facial images. Robust OpenCV preprocessing pipelines for augmentation, normalization, and feature extraction. Customer segmentation use case.</p>
+        <div class="project-stack">
+          <span class="stk">Python</span><span class="stk">TensorFlow</span><span class="stk">OpenCV</span><span class="stk">CNNs</span><span class="stk">Scikit-Learn</span>
+        </div>
+      </div>
+      <div class="project-link-col"></div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">05</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge yl">ANDROID · VOICE · 2026</div>
+        <div class="project-name">SREE — CUSTOM VOICE ASSISTANT</div>
+        <p class="project-desc">Personal Android voice assistant featuring fully private "circle to search" capability, custom wake-word detection (TFLite), NLU for multi-step commands, TTS output, and full device control integration.</p>
+        <div class="project-stack">
+          <span class="stk">Kotlin</span><span class="stk">TFLite</span><span class="stk">STT</span><span class="stk">TTS</span><span class="stk">NLP</span>
+        </div>
+      </div>
+      <div class="project-link-col"><a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a></div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">06</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge">ANDROID · IME · 2026</div>
+        <div class="project-name">NEOKEYBOARD — ANDROID IME</div>
+        <p class="project-desc">Custom Android keyboard with Speech-to-Text voice typing, contextual AI suggestions, Tenor GIFs, and async processing for real-time low-latency performance. Full system-level IME.</p>
+        <div class="project-stack">
+          <span class="stk">Kotlin</span><span class="stk">STT</span><span class="stk">ML Kit</span><span class="stk">Hilt</span><span class="stk">Room</span><span class="stk">Tenor GIFs</span>
+        </div>
+      </div>
+      <div class="project-link-col"><a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a></div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">07</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge">WEB · FULL STACK · 2026</div>
+        <div class="project-name">PHOTOVAULT — WEB GALLERY</div>
+        <p class="project-desc">A personal photo vault web application storing images in a private GitHub repository. Features Vercel serverless Python functions, a responsive React (Vite) UI, 90MB file support, and secure token-based authentication.<br><br><span style="color:var(--yellow)">Demo Repo:</span> ramsri1 &nbsp;|&nbsp; <span style="color:var(--yellow)">Password:</span> photo-vault-security-9988</p>
+        <div class="project-stack">
+          <span class="stk">React</span><span class="stk">Vite</span><span class="stk">Python</span><span class="stk">Vercel</span><span class="stk">GitHub API</span>
+        </div>
+      </div>
+      <div class="project-link-col">
+        <a class="p-link" href="https://photo-vault2.vercel.app/" target="_blank">LIVE DEMO →</a>
+        <a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-row">
+    <div class="project-num">08</div>
+    <div class="project-content">
+      <div>
+        <div class="project-badge yl">PWA · NEXT.JS · 2026</div>
+        <div class="project-name">LIFECORE OS — HABIT TRACKER</div>
+        <p class="project-desc">A cinematic, mobile-first personal development PWA. Features a daily habit checklist, Pomodoro focus timer, mood journal, and priority-based task management with a dark cyberpunk film grain aesthetic.</p>
+        <div class="project-stack">
+          <span class="stk">Next.js 14</span><span class="stk">React 18</span><span class="stk">TypeScript</span><span class="stk">Tailwind CSS</span><span class="stk">PWA</span>
+        </div>
+      </div>
+      <div class="project-link-col">
+        <a class="p-link" href="https://kushal-project-two.vercel.app/" target="_blank">LIVE DEMO →</a>
+        <a class="p-link" href="https://github.com/ramsri90" target="_blank">GITHUB →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-header"><span class="sec-label">Experience</span><span class="sec-num">03</span></div>
+  <div class="exp-row">
+    <div class="exp-period">Apr 2026 – Present</div>
+    <div class="exp-body">
+      <div class="exp-co">WebbHeads · Visakhapatnam (Remote)</div>
+      <div class="exp-role">WEB DEVELOPMENT INTERN</div>
+      <div class="exp-desc">Built a full-stack property listing platform (Next.js 14) with a WhatsApp bot using Meta Cloud API — multi-language NLP, interactive menus, automated lead capture to Google Sheets. Used Claude and AI-native tools to ship production features fast.</div>
+    </div>
+    <div class="exp-status active">ACTIVE</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">May 2024 – Jun 2024</div>
+    <div class="exp-body">
+      <div class="exp-co">Vishnuspire · Bhimavaram</div>
+      <div class="exp-role">RESEARCH INTERN</div>
+      <div class="exp-desc">Performed data-driven market segmentation analysis. Synthesized findings into strategic reports with actionable recommendations for business development.</div>
+    </div>
+    <div class="exp-status done">COMPLETED</div>
+  </div>
+  <div class="exp-row">
+    <div class="exp-period">Completed</div>
+    <div class="exp-body">
+      <div class="exp-co">Google AIML · AICTE</div>
+      <div class="exp-role">ML VIRTUAL INTERN</div>
+      <div class="exp-desc">Completed industry-standard ML curriculum covering model development, evaluation, and deployment under Google's AIML program via AICTE.</div>
+    </div>
+    <div class="exp-status done">COMPLETED</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-header"><span class="sec-label">Get in touch</span><span class="sec-num">04</span></div>
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="contact-big">LET'S<br/><em>BUILD</em><br/>TOGETHER</div>
+      <p class="contact-sub">Open to AI Engineer, full-stack, and backend roles. I ship end-to-end. Let's talk.</p>
+      <a class="contact-email" href="mailto:ramsri.sri2004@gmail.com">ramsri.sri2004@gmail.com</a>
+    </div>
+    <div class="contact-right">
+      <a class="contact-link-row" href="mailto:ramsri.sri2004@gmail.com">
+        <div><div class="cl-label">Email</div><div class="cl-val">ramsri.sri2004@gmail.com</div></div>
+        <div class="cl-arr">→</div>
+      </a>
+      <a class="contact-link-row" href="https://github.com/ramsri90" target="_blank">
+        <div><div class="cl-label">GitHub</div><div class="cl-val">ramsri90</div></div>
+        <div class="cl-arr">→</div>
+      </a>
+      <a class="contact-link-row" href="https://www.linkedin.com/in/kamujuvivekramsri/" target="_blank">
+        <div><div class="cl-label">LinkedIn</div><div class="cl-val">Kamuju Vivek Ram Sri</div></div>
+        <div class="cl-arr">→</div>
+      </a>
+      <a class="contact-link-row" href="tel:+916304050076">
+        <div><div class="cl-label">Phone</div><div class="cl-val">+91 6304050076</div></div>
+        <div class="cl-arr">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft-l">© 2026 Kamuju Vivek Ram Sri · Visakhapatnam, AP</span>
+  <span class="ft-r">VIVEK.DEV</span>
+</footer>
+
+<script>
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = (e.clientX - 6) + 'px';
+  cur.style.top = (e.clientY - 6) + 'px';
+});
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => cur.classList.add('big'));
+  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+});
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold: 0.08});
+document.querySelectorAll('.project-row,.exp-row,.skills-table tr,.contact-inner').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+  io.observe(el);
+});
+</script>
+</body>
+</html>
